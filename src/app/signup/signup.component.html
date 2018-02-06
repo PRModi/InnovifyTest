@@ -1,0 +1,59 @@
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-centered">
+      <form novalidate [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input formControlName="firstName" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input formControlName="lastName" type="text" class="form-control has-error">
+        </div>
+
+        <div class="form-group has-error">
+          <label for="lastName">Email</label>
+          <input formControlName="email" type="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Password</label>
+          <input formControlName="password" type="password" class="form-control">
+        </div>
+
+
+        <div class="form-group">
+          <label for="mobile">Mobile</label>
+          <input formControlName="mobile" type="number" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Date Of Birth</label>
+          <input formControlName="dateOfBirth" type="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Address</label>
+          <textarea formControlName="address" rows="4" class="form-control" aria-label="With textarea" id="address"></textarea>
+
+        </div>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-success" type="submit">Signup</button>
+        </div>
+        <br>
+        <div class="text-center">
+          <p style="color:#D3D3D3">Note : Provide credentials
+            <strong>testUser</strong> and
+            <strong>testPassword</strong> to Login!
+            <i class="far fa-smile"></i>
+          </p>
+        </div>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

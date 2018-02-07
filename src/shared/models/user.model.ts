@@ -5,7 +5,7 @@ export class User {
         public firstName?: string,
         public lastName?: string,
         public mobile?: number,
-        public dob?: string,
+        public dateOfBirth?: string,
         public address?: string,
         public avatar?: string
     ) { }

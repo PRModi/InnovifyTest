@@ -15,9 +15,8 @@ import { AuthGuard } from '../shared/services/authguard';
 import { fakeBackendProvider } from '../shared/fake/fake-backend';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../shared/fake/jwt-interceptor';
-import { ImageCropperComponent } from 'ng2-img-cropper';
 import { HeaderComponent } from '../shared/component/header/header.component';
-
+import { ImageCropperModule } from "ng2-img-cropper/index";
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { HeaderComponent } from '../shared/component/header/header.component';
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    ImageCropperComponent,
     FooterComponent,
     HeaderComponent
   ],
@@ -35,7 +33,8 @@ import { HeaderComponent } from '../shared/component/header/header.component';
     RouterModule,
     HttpModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule
   ],
   providers: [FormBuilder, AuthService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,

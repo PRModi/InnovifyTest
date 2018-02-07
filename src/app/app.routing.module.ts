@@ -8,7 +8,8 @@ import { SignupComponent } from "./signup/signup.component";
 import { RouterModule } from "@angular/router";
 
 export const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'signin', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
     { path: '**', redirectTo: '' }

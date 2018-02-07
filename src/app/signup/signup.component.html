@@ -1,44 +1,96 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+          <br>
+          <img *ngIf="data.image" [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addImage()">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <br>
   <br>
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-centered">
       <form novalidate [formGroup]="signUpForm" (ngSubmit)="submit()">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input formControlName="firstName" type="text" class="form-control">
+
+        <div class="text-center">
+          <img *ngIf="!data.image" src="./assets/avatar.jpg" class="img-thumbnail img-responsive center-block" alt="Cinque Terre" data-toggle="modal"
+            data-target="#exampleModal">
+          <img data-toggle="modal" data-target="#exampleModal" class="img-thumbnail img-responsive center-block" *ngIf="data.image"
+            [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input formControlName="firstName" type="text" class="form-control">
+              <p class="err-msg" *ngIf="signUpForm.controls.firstName.hasError('required') && !signUpForm.controls.firstName.pristine">First name should not be empty !</p>
+              <p class="err-msg" *ngIf="signUpForm.controls.firstName.hasError('maxlength')">First name should not be greater than 30 characters !</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input formControlName="lastName" type="text" class="form-control has-error">
+              <p class="err-msg" *ngIf="signUpForm.controls.lastName.hasError('required') && !signUpForm.controls.lastName.pristine">Last name should not be empty !</p>
+              <p class="err-msg" *ngIf="signUpForm.controls.lastName.hasError('maxlength')">Last name should not be greater than 30 characters !</p>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input formControlName="lastName" type="text" class="form-control has-error">
-        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="mobile">Mobile</label>
+              <input formControlName="mobile" maxlength="10" type="number" class="form-control">
+              <p class="err-msg" *ngIf="signUpForm.controls.mobile.hasError('required') && !signUpForm.controls.mobile.pristine">Mobile number should not be empty !</p>
+              <p class="err-msg" *ngIf="signUpForm.controls.mobile.hasError('minlength')">Mobile number should be of 10 digits!</p>
+            </div>
+          </div>
 
-        <div class="form-group has-error">
-          <label for="lastName">Email</label>
-          <input formControlName="email" type="email" class="form-control">
-        </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="mobile">Date Of Birth</label>
+              <input formControlName="dateOfBirth" type="date" class="form-control">
+              <p class="err-msg" *ngIf="signUpForm.controls.dateOfBirth.hasError('required') && !signUpForm.controls.dateOfBirth.pristine">Date of birth should not be empty !</p>
+              <p class="err-msg" *ngIf="signUpForm.controls.dateOfBirth.hasError('validDate')">Date of Birth should not be greater than the current date !</p>
+            </div>
+          </div>
 
-        <div class="form-group">
-          <label for="lastName">Password</label>
-          <input formControlName="password" type="password" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label for="mobile">Mobile</label>
-          <input formControlName="mobile" type="number" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="mobile">Date Of Birth</label>
-          <input formControlName="dateOfBirth" type="date" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="mobile">Address</label>
           <textarea formControlName="address" rows="4" class="form-control" aria-label="With textarea" id="address"></textarea>
+          <p class="err-msg" *ngIf="signUpForm.controls.address.hasError('required') && !signUpForm.controls.address.pristine">Address should not be empty !</p>
+        </div>
+        <div class="form-group has-error">
+          <label for="lastName">Email</label>
+          <input formControlName="email" type="email" class="form-control">
+          <p class="err-msg" *ngIf="signUpForm.controls.email.hasError('email') && !signUpForm.controls.email.pristine">Please provide valid Email !</p>
+        </div>
 
+        <div class="form-group">
+          <label for="lastName">Password</label>
+          <input formControlName="password" type="password" class="form-control">
+          <p class="err-msg" *ngIf="signUpForm.controls.password.hasError('required') && !signUpForm.controls.password.pristine">Password should not be empty !</p>
         </div>
 
         <div class="text-center">
@@ -46,11 +98,7 @@
         </div>
         <br>
         <div class="text-center">
-          <p style="color:#D3D3D3">Note : Provide credentials
-            <strong>testUser</strong> and
-            <strong>testPassword</strong> to Login!
-            <i class="far fa-smile"></i>
-          </p>
+          <a [routerLink]="['/signin']">Already Registerd? Login now</a>
         </div>
         <br>
       </form>

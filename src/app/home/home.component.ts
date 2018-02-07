@@ -1,3 +1,4 @@
+import { User } from './../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public user: User;
+
+
   constructor() { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.user);
   }
 
 }

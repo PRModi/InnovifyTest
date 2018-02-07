@@ -1,3 +1,4 @@
+import { FooterComponent } from './../shared/component/footer/footer.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,8 @@ import { AuthGuard } from '../shared/services/authguard';
 import { fakeBackendProvider } from '../shared/fake/fake-backend';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../shared/fake/jwt-interceptor';
+import { ImageCropperComponent } from 'ng2-img-cropper';
+import { HeaderComponent } from '../shared/component/header/header.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { JwtInterceptor } from '../shared/fake/jwt-interceptor';
     AppComponent,
     HomeComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    ImageCropperComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     AppRoutingModule,
